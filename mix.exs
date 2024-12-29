@@ -1,13 +1,25 @@
 defmodule FLAMEGigalixirBackend.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/gigalixir/flame_gigalixir_backend"
+  @version "0.1.0"
+
   def project do
     [
       app: :flame_gigalixir_backend,
-      version: "0.1.0",
-      elixir: "~> 1.18",
+      description: "A FLAME backend for Gigalixir",
+      version: @version,
+      elixir: "~> 1.15",
+      elixirc_paths: ["lib"],
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      package: package(),
+      docs: [
+        main: "readme",
+        extras: ["README.md", "CHANGELOG.md"],
+        source_ref: "v#{@version}",
+        source_url: @source_url
+      ]
     ]
   end
 
@@ -21,8 +33,19 @@ defmodule FLAMEGigalixirBackend.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:flame, "~> 0.4.0 or ~> 0.5.0"},
+    ]
+  end
+
+  defp package do
+    [
+      name: :flame_gigalixir_backend,
+      maintainers: ["Gigalixir"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => @source_url,
+      },
+      files: ["lib", "mix.exs", "README*", "LICENSE*", "CHANGELOG.md"]
     ]
   end
 end
