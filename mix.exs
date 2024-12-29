@@ -36,6 +36,7 @@ defmodule FLAMEGigalixirBackend.MixProject do
       {:flame, "~> 0.4.0 or ~> 0.5.0"},
       {:jason, ">= 0.0.0"},
       {:libcluster, "~> 3.3"},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
     ]
   end
 
