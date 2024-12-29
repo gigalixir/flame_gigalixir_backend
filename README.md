@@ -21,11 +21,44 @@ end
 
 ## Usage
 
+
+### Configure the FLAME backend
+
 Configure the flame backend in our configuration or application setup:
 
 ```elixir
-  # prod.exs
+  # config/prod.exs
   config :flame, :backend, FLAMEGigalixirBackend
+```
+
+
+### Configure clustering
+
+The backend relies on libcluster to communicate between the FLAME Parent and the FLAME workers.
+
+```elixir
+  # config/runtime.exs
+  config :libcluster,
+    topologies: [
+      k8s_example: [
+        strategy: Cluster.Strategy.Kubernetes,
+        config: [
+          kubernetes_selector: System.get_env("LIBCLUSTER_KUBERNETES_SELECTOR"),
+          kubernetes_node_basename: System.get_env("LIBCLUSTER_KUBERNETES_NODE_BASENAME")]]]
+```
+
+Be sure to start up libclustering:
+```elixir
+  # application.ex
+  def start(_type, _args) do
+    topologies = Application.get_env(:libcluster, :topologies) || []
+
+    children = [
+      {Cluster.Supervisor, [topologies, [name: MyApplication.ClusterSupervisor]]},
+      ...
+    ]
+    ...
+  end
 ```
 
 
