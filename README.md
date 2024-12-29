@@ -1,6 +1,6 @@
 # FLAMEGigalixirBackend
 
-A [FLAME][flame] Backend for [Gigalixir][gigalixir], Elixir’s Platform as a Service.
+A [FLAME](https://github.com/phoenixframework/flame/tree/main) Backend for [Gigalixir](https://gigalixir.com), Elixir’s Platform as a Service.
 
 [![Module Version](https://img.shields.io/hexpm/v/flame_gigalixir_backend.svg)](https://hex.pm/packages/flame_gigalixir_backend)
 [![Last Updated](https://img.shields.io/github/last-commit/gigalixir/flame_gigalixir_backend.svg)](https://github.com/gigalixir/flame_gigalixir_backend/commits/main)
@@ -60,8 +60,3 @@ Be sure to start up libclustering:
     ...
   end
 ```
-
-
-
-[flame]:https://github.com/phoenixframework/flame/tree/main
-[gigalixir]:https://gigalixir.com
